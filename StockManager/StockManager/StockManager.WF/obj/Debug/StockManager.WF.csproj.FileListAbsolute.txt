@@ -1,0 +1,9 @@
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.exe.config
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.exe
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.pdb
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.csprojAssemblyReference.cache
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.MainWindow.resources
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.Properties.Resources.resources
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.csproj.GenerateResource.cache
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.exe
+E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.pdb
