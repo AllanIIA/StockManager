@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormManageCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageCategory.Designer.cs">
+      <DependentUpon>FormManageCategory.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,8 +60,13 @@
     </Compile>
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\ProductCategory.cs" />
+    <Compile Include="Model\StockMovement.cs" />
+    <Compile Include="Model\StockMovementProduct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormManageCategory.resx">
+      <DependentUpon>FormManageCategory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

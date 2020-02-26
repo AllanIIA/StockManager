@@ -39,8 +39,13 @@ namespace StockManager.WF.Model
 		/// </summary>
 		private int _StockedQuantity;
 
+		/// <summary>
+		/// Liaison Produit Catégory
+		/// </summary>
+		private int _IdentifierProductCategory;
 
-		private ProductCategory _ProductCategory;
+		
+
 		#endregion
 
 		#region Attributes
@@ -104,15 +109,17 @@ namespace StockManager.WF.Model
 			set { _StockedQuantity = value; }
 		}
 
-
-
-
-
-		public ProductCategory ContactType
+		/// <summary>
+		/// Liaison Produit Catégory
+		/// </summary>
+		public int IdentifierProductCategory 
 		{
-			get { return _ProductCategory; }
-			set { _ProductCategory = value; }
+			get { return _IdentifierProductCategory; }
+			set { _IdentifierProductCategory = value; }
 		}
+
+
+
 		#endregion
 
 

@@ -7,3 +7,13 @@ E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\
 E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.csproj.GenerateResource.cache
 E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.exe
 E:\BTS E1 2\C#\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.pdb
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.exe.config
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.exe
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.pdb
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.csprojAssemblyReference.cache
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.MainWindow.resources
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.Properties.Resources.resources
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.csproj.GenerateResource.cache
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.exe
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.pdb
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageCategory.resources
