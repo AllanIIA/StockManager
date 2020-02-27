@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockManager.WF.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,18 +20,35 @@ namespace StockManager.WF
 		/// <summary>
 		/// Liste des catégories de l'application
 		/// </summary>
-		private List<string> _Categories;
-		#endregion
+		private List<string> _ManageCategories;
 
-		#region Methods
-		/// <summary>
-		/// Obtient ou défini la liste des catégories de l'application
+        /// <summary>
+		/// Liste des produits de l'application
 		/// </summary>
-		public List<string> Categories
-		{
-			get { return _Categories; }
-			set { _Categories = value; }
+		private List<string> _ManageProducts;
+
+        private static List<ProductCategory> _Categories = new List<ProductCategory>();
+        private static List<Product> _Products = new List<Product>();
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Obtient ou défini la liste des catégories de l'application
+        /// </summary>
+        public List<string> ManageCategories
+        {
+			get { return _ManageCategories; }
+			set { _ManageCategories = value; }
 		}
+
+        /// <summary>
+        /// Obtient ou défini la liste des produits de l'application
+        /// </summary>
+        public List<string> ManageProducts
+        {
+            get { return _ManageProducts; }
+            set { _ManageProducts = value; }
+        }
         #endregion
 
 
@@ -45,11 +63,14 @@ namespace StockManager.WF
 
             #region Initialisation des données
 
-            // tags
-            Categories = new List<string>();
-            Categories.Add("Action");
-            Categories.Add("Aventure");
-            Categories.Add("Fantastic");
+            // Categories
+            ProductCategory Action = new ProductCategory("Action");
+           
+
+
+            // Produits
+            Action.Products.Add(new Product("Medal of Honor", "_MOF", 10, 5, "test"));
+            _Categories.Add(Action);
             #endregion
 
 
@@ -59,8 +80,14 @@ namespace StockManager.WF
         #endregion
         private void buttonManageCategory_Click(object sender, EventArgs e)
         {
-            FormManageCategory formManageCategory = new FormManageCategory(Categories);
+            FormManageCategory formManageCategory = new FormManageCategory(ManageCategories);
             formManageCategory.ShowDialog();
+        }
+
+        private void buttonManageProduct_Click(object sender, EventArgs e)
+        {
+            FormManageProduct formManageProduct = new FormManageProduct(_ManageProducts);
+            formManageProduct.ShowDialog();
         }
     }
 }

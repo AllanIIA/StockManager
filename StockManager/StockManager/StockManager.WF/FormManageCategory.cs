@@ -20,6 +20,7 @@ namespace StockManager.WF
 		/// Liste des catégories de l'application
 		/// </summary>
 		private List<string> _Categories;
+
 		#endregion
 
 		#region Methods
@@ -31,6 +32,8 @@ namespace StockManager.WF
 			get { return _Categories; }
 			set { _Categories = value; }
 		}
+
+		
 		#endregion
 
 		#region Constructors
@@ -44,7 +47,7 @@ namespace StockManager.WF
 			InitializeComponent();
 			Categories = categories;
 			Categories.Add("New Category");
-			listBoxCategoryName.DataSource = Categories;
+			listBoxCategoryName.DataSource = _Categories;
 		}
 
 
@@ -62,7 +65,7 @@ namespace StockManager.WF
 		{
 			if(listBoxCategoryName.SelectedItem is string)
 			{
-				textBoxCategoryname.Text = ((string)listBoxCategoryName.SelectedItem) == "New category" ? "" : ((string)listBoxCategoryName.SelectedItem);
+				textBoxCategoryName.Text = ((string)listBoxCategoryName.SelectedItem) == "New category" ? "" : ((string)listBoxCategoryName.SelectedItem);
 			}
 		}
 
@@ -76,7 +79,7 @@ namespace StockManager.WF
 			if (listBoxCategoryName.SelectedItem is string)
 			{
 				Categories.Remove((string)listBoxCategoryName.SelectedItem);
-				Categories.Add(textBoxCategoryname.Text);
+				Categories.Add(textBoxCategoryName.Text);
 
 				ForceRefreshList();
 			}
@@ -120,7 +123,6 @@ namespace StockManager.WF
 				}
 			}
 		}
-
 
 		
 	}

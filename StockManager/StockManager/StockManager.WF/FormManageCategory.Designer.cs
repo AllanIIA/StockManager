@@ -33,7 +33,7 @@
             this.buttonDeleteCategory = new System.Windows.Forms.Button();
             this.labelManageCategory = new System.Windows.Forms.Label();
             this.labelCategoryName = new System.Windows.Forms.Label();
-            this.textBoxCategoryname = new System.Windows.Forms.TextBox();
+            this.textBoxCategoryName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // listBoxCategoryName
@@ -70,11 +70,11 @@
             this.labelManageCategory.AutoSize = true;
             this.labelManageCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelManageCategory.ForeColor = System.Drawing.Color.Red;
-            this.labelManageCategory.Location = new System.Drawing.Point(300, 18);
+            this.labelManageCategory.Location = new System.Drawing.Point(280, 21);
             this.labelManageCategory.Name = "labelManageCategory";
-            this.labelManageCategory.Size = new System.Drawing.Size(221, 25);
+            this.labelManageCategory.Size = new System.Drawing.Size(238, 25);
             this.labelManageCategory.TabIndex = 3;
-            this.labelManageCategory.Text = "Gestion des Category";
+            this.labelManageCategory.Text = "Gestion des Categories";
             // 
             // labelCategoryName
             // 
@@ -86,19 +86,20 @@
             this.labelCategoryName.TabIndex = 4;
             this.labelCategoryName.Text = "Categorie :";
             // 
-            // textBoxCategoryname
+            // textBoxCategoryName
             // 
-            this.textBoxCategoryname.Location = new System.Drawing.Point(464, 86);
-            this.textBoxCategoryname.Name = "textBoxCategoryname";
-            this.textBoxCategoryname.Size = new System.Drawing.Size(233, 20);
-            this.textBoxCategoryname.TabIndex = 5;
+            this.textBoxCategoryName.Location = new System.Drawing.Point(464, 86);
+            this.textBoxCategoryName.Name = "textBoxCategoryName";
+            this.textBoxCategoryName.Size = new System.Drawing.Size(233, 20);
+            this.textBoxCategoryName.TabIndex = 5;
+          
             // 
             // FormManageCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBoxCategoryname);
+            this.Controls.Add(this.textBoxCategoryName);
             this.Controls.Add(this.labelCategoryName);
             this.Controls.Add(this.labelManageCategory);
             this.Controls.Add(this.buttonDeleteCategory);
@@ -118,6 +119,6 @@
         private System.Windows.Forms.Button buttonDeleteCategory;
         private System.Windows.Forms.Label labelManageCategory;
         private System.Windows.Forms.Label labelCategoryName;
-        private System.Windows.Forms.TextBox textBoxCategoryname;
+        private System.Windows.Forms.TextBox textBoxCategoryName;
     }
 }

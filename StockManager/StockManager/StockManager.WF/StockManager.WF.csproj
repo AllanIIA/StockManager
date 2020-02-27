@@ -52,6 +52,12 @@
     <Compile Include="FormManageCategory.Designer.cs">
       <DependentUpon>FormManageCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormManageProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageProduct.Designer.cs">
+      <DependentUpon>FormManageProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormManageCategory.resx">
       <DependentUpon>FormManageCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManageProduct.resx">
+      <DependentUpon>FormManageProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

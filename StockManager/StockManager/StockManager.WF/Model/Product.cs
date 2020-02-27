@@ -17,7 +17,7 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Nom du produit
 		/// </summary>
-		private string _Nom;
+		private string _Name;
 
 		/// <summary>
 		/// Reference du produit
@@ -44,7 +44,6 @@ namespace StockManager.WF.Model
 		/// </summary>
 		private int _IdentifierProductCategory;
 
-		
 
 		#endregion
 
@@ -63,10 +62,10 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Nom du produit
 		/// </summary>
-		public string Nom
+		public string Name
 		{
-			get { return _Nom; }
-			set { _Nom = value; }
+			get { return _Name; }
+			set { _Name = value; }
 		}
 
 
@@ -118,7 +117,27 @@ namespace StockManager.WF.Model
 			set { _IdentifierProductCategory = value; }
 		}
 
+		#region Constructors
 
+		/// <summary>
+		/// Produit
+		/// </summary>
+		/// <param name="name">Nom du produit</param>
+		/// <param name="reference">Réference du produit</param>
+		/// <param name="price">Prix du produit</param>
+		/// <param name="stockedQuantity">Quantité stockée du produit</param>
+		/// <param name="description">Description du produit</param>
+		public Product(string name, string reference, int stockedQuantity, double price, string description)
+		{
+			Name = name;
+			Reference = reference;
+			Price = price;
+			StockedQuantity = stockedQuantity;
+			Description = description;
+
+		}
+
+		#endregion
 
 		#endregion
 
