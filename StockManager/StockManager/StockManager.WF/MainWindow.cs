@@ -27,9 +27,16 @@ namespace StockManager.WF
 		/// </summary>
 		private List<string> _ManageProducts;
 
-        private static List<ProductCategory> _Categories = new List<ProductCategory>();
-        private static List<Product> _Products = new List<Product>();
+        /// liste des produits de film
+        /// </summary>
+        private List<Product> _Products;
         #endregion
+
+
+       
+       
+
+       
 
         #region Methods
         /// <summary>
@@ -49,6 +56,15 @@ namespace StockManager.WF
             get { return _ManageProducts; }
             set { _ManageProducts = value; }
         }
+
+        /// <summary>
+        /// Obtien ou defini les produits de l'application
+        /// </summary>
+        public List<Product> Products
+        {
+            get { return _Products; }
+            set { _Products = value; }
+        }
         #endregion
 
 
@@ -65,12 +81,14 @@ namespace StockManager.WF
 
             // Categories
             ProductCategory Action = new ProductCategory("Action");
-           
+
 
 
             // Produits
-            Action.Products.Add(new Product("Medal of Honor", "_MOF", 10, 5, "test"));
-            _Categories.Add(Action);
+            Products = new List<Product>();
+            Products.Add(new ProductList("Naruto", "R205", "Manga Ninja XD"));
+            Products.Add(new ProductList("Naro", "REF105", "Manga  XD"));
+            Products.Add(new ProductList("Naru", "REF5", " Ninja "));
             #endregion
 
 
@@ -86,7 +104,7 @@ namespace StockManager.WF
 
         private void buttonManageProduct_Click(object sender, EventArgs e)
         {
-            FormManageProduct formManageProduct = new FormManageProduct(_ManageProducts);
+            FormManageProduct formManageProduct = new FormManageProduct(_Products);
             formManageProduct.ShowDialog();
         }
     }

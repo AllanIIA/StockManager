@@ -157,7 +157,7 @@
             this.buttonUpdateProduct.TabIndex = 12;
             this.buttonUpdateProduct.Text = "Ajouter / Mise à jour";
             this.buttonUpdateProduct.UseVisualStyleBackColor = true;
-            this.buttonUpdateProduct.Click += new System.EventHandler(this.buttonUpdateProduct_Click);
+
             // 
             // buttonDeleteProduct
             // 
@@ -167,7 +167,6 @@
             this.buttonDeleteProduct.TabIndex = 13;
             this.buttonDeleteProduct.Text = "Supprimer";
             this.buttonDeleteProduct.UseVisualStyleBackColor = true;
-            this.buttonDeleteProduct.Click += new System.EventHandler(this.buttonDeleteProduct_Click);
             // 
             // FormManageProduct
             // 

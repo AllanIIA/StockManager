@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StockManager.WF.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,41 +11,41 @@ using System.Windows.Forms;
 
 namespace StockManager.WF
 {
-    public partial class FormManageProduct : Form
-    {
-        
+	public partial class FormManageProduct : Form
+	{
 
-		#region Attibutes
 
+		#region Attributes
 		/// <summary>
-		/// Liste des Produits de l'application
+		/// Liste des produits de l'application
 		/// </summary>
-		private List<string> _Products;
+		private List<Product> _Products;
+
 		#endregion
 
 		#region Methods
 		/// <summary>
-		/// Obtient ou défini la liste des produits de l'application
+		/// Obtien ou defini la liste des produits de l'aplication
 		/// </summary>
-		public List<string> Products
+		public List<Product> Products
 		{
 			get { return _Products; }
 			set { _Products = value; }
 		}
-		#endregion
+        #endregion
+        #region Constructors
 
-		#region Constructors
-
-		/// <summary>
-		/// Constructeur Principale
-		/// </summary>
-		/// <param name="products"></param>
-		public FormManageProduct(List<string> products)
+        /// <summary>
+        /// Constructeur Principale
+        /// </summary>
+        /// <param name="products"></param>
+        public FormManageProduct(List<Product> products)
 		{
 			InitializeComponent();
 			Products = products;
-			Products.Add("New Product");
-			listBoxProductName.DataSource = _Products;
+			listBoxProductName.DataSource = Products;
+			listBoxProductName.DisplayMember = "Name";
+			listBoxProductName.DisplayMember = nameof(Product.Name);
 		}
 
 		#endregion
@@ -61,6 +62,11 @@ namespace StockManager.WF
 				textBoxProductName.Text = ((string)listBoxProductName.SelectedItem) == "New product" ? "" : ((string)listBoxProductName.SelectedItem);
 				textBoxProductReference.Text = ((string)listBoxProductName.SelectedItem) == "New product" ? "" : ((string)listBoxProductName.SelectedItem);
 			}
+			if (listBoxProductName.SelectedItem is Product)
+			{
+				textBoxProductName.Text = ((Product)listBoxProductName.SelectedItem).Name;
+				textBoxProductReference.Text = ((Product)listBoxProductName.SelectedItem).Reference;
+			}
 		}
 
 
@@ -72,51 +78,43 @@ namespace StockManager.WF
 			int selectedIndex = listBoxProductName.SelectedIndex;
 
 			listBoxProductName.DataSource = null;
-			if (!Products.Contains("New Product"))
-			{
-				Products.Add("New Product");
-			}
 			listBoxProductName.DataSource = Products;
-
-			listBoxProductName.SelectedItem = selectedIndex;
+			listBoxProductName.DisplayMember = nameof(Product.Name);
+			listBoxProductName.SelectedIndex = selectedIndex;
 		}
 
 
-		/// <summary>
-		/// Permet d'ajouter et ou de mettre à jour des produits
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void buttonUpdateProduct_Click(object sender, EventArgs e)
+		private void updateProduct()
 		{
-			if (listBoxProductName.SelectedItem is string)
+			if (listBoxProductName.SelectedItem is Product)
 			{
-				Products.Remove((string)listBoxProductName.SelectedItem);
-				Products.Add(textBoxProductName.Text);
-
+				((Product)listBoxProductName.SelectedItem).Name = textBoxProductName.Text;
+				((Product)listBoxProductName.SelectedItem).Reference = textBoxProductReference.Text;
+				((Product)listBoxProductName.SelectedItem).Description = textBoxProductDescription.Text;
+				double Prix = ((Product)listBoxProductName.SelectedItem).Price;
+				string PrixUnitaire = Prix.ToString();
+				textBoxProductPrice.Text = PrixUnitaire;
+				int Quantity = ((Product)listBoxProductName.SelectedItem).StockedQuantity;
+				string QuantityTotal = Quantity.ToString();
+				textBoxProductStockedQuantity.Text = QuantityTotal;
 				ForceRefreshList();
 			}
-		}
 
-		/// <summary>
-		/// Permet de supprimer des produits
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void buttonDeleteProduct_Click(object sender, EventArgs e)
-		{
-			if (listBoxProductName.SelectedItem is string)
-			{
-				if (((string)listBoxProductName.SelectedItem) == "New Category")
-				{
 
-				}
-				else
-				{
-					Products.Remove((string)listBoxProductName.SelectedItem);
-					ForceRefreshList();
-				}
-			}
+			/// <summary>
+			/// Permet d'ajouter et ou de mettre à jour des produits
+			/// </summary>
+			/// <param name="sender"></param>
+			/// <param name="e"></param>
+			
+
+			/// <summary>
+			/// Permet de supprimer des produits
+			/// </summary>
+			/// <param name="sender"></param>
+			/// <param name="e"></param>
+			
 		}
-	}
+	} 
 }
+

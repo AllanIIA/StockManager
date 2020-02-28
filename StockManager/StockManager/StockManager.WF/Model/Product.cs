@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockManager.WF.Model
 {
-    class Product
+	public abstract class Product
     {
 		#region Proprietes
 		/// <summary>
@@ -127,12 +127,10 @@ namespace StockManager.WF.Model
 		/// <param name="price">Prix du produit</param>
 		/// <param name="stockedQuantity">Quantité stockée du produit</param>
 		/// <param name="description">Description du produit</param>
-		public Product(string name, string reference, int stockedQuantity, double price, string description)
+		public Product(string name, string reference,  string description)
 		{
 			Name = name;
 			Reference = reference;
-			Price = price;
-			StockedQuantity = stockedQuantity;
 			Description = description;
 
 		}
