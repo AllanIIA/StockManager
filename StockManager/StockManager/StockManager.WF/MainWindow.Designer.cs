@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.buttonManageCategory = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonLeavingStock = new System.Windows.Forms.Button();
+            this.buttonEnteringStock = new System.Windows.Forms.Button();
             this.buttonManageProduct = new System.Windows.Forms.Button();
             this.labelManageProduct = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -45,23 +45,25 @@
             this.buttonManageCategory.UseVisualStyleBackColor = true;
             this.buttonManageCategory.Click += new System.EventHandler(this.buttonManageCategory_Click);
             // 
-            // button2
+            // buttonLeavingStock
             // 
-            this.button2.Location = new System.Drawing.Point(464, 191);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(212, 112);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Gestion sorties stocks";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonLeavingStock.Location = new System.Drawing.Point(464, 191);
+            this.buttonLeavingStock.Name = "buttonLeavingStock";
+            this.buttonLeavingStock.Size = new System.Drawing.Size(212, 112);
+            this.buttonLeavingStock.TabIndex = 1;
+            this.buttonLeavingStock.Text = "Gestion sorties stocks";
+            this.buttonLeavingStock.UseVisualStyleBackColor = true;
+            this.buttonLeavingStock.Click += new System.EventHandler(this.buttonLeavingStock_Click);
             // 
-            // button3
+            // buttonEnteringStock
             // 
-            this.button3.Location = new System.Drawing.Point(42, 191);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(224, 117);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Gestion entrées stocks";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonEnteringStock.Location = new System.Drawing.Point(42, 191);
+            this.buttonEnteringStock.Name = "buttonEnteringStock";
+            this.buttonEnteringStock.Size = new System.Drawing.Size(224, 117);
+            this.buttonEnteringStock.TabIndex = 2;
+            this.buttonEnteringStock.Text = "Gestion entrées stocks";
+            this.buttonEnteringStock.UseVisualStyleBackColor = true;
+            this.buttonEnteringStock.Click += new System.EventHandler(this.buttonEnteringStock_Click);
             // 
             // buttonManageProduct
             // 
@@ -91,8 +93,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.labelManageProduct);
             this.Controls.Add(this.buttonManageProduct);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonEnteringStock);
+            this.Controls.Add(this.buttonLeavingStock);
             this.Controls.Add(this.buttonManageCategory);
             this.Name = "MainWindow";
             this.Text = "FormManageIIAGame";
@@ -104,8 +106,8 @@
         #endregion
 
         private System.Windows.Forms.Button buttonManageCategory;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonLeavingStock;
+        private System.Windows.Forms.Button buttonEnteringStock;
         private System.Windows.Forms.Button buttonManageProduct;
         private System.Windows.Forms.Label labelManageProduct;
     }

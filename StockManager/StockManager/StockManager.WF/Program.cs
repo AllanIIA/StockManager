@@ -12,6 +12,7 @@ namespace StockManager.WF
         /// Point d'entrée principal de l'application.
         /// </summary>
         [STAThread]
+
         static void Main()
         {
             Application.EnableVisualStyles();

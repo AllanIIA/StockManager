@@ -20,12 +20,9 @@ namespace StockManager.WF
 		/// <summary>
 		/// Liste des catégories de l'application
 		/// </summary>
-		private List<string> _ManageCategories;
+		private List<string> _Categories;
 
-        /// <summary>
-		/// Liste des produits de l'application
-		/// </summary>
-		private List<string> _ManageProducts;
+       
 
         /// liste des produits de film
         /// </summary>
@@ -39,23 +36,9 @@ namespace StockManager.WF
        
 
         #region Methods
-        /// <summary>
-        /// Obtient ou défini la liste des catégories de l'application
-        /// </summary>
-        public List<string> ManageCategories
-        {
-			get { return _ManageCategories; }
-			set { _ManageCategories = value; }
-		}
+        
 
-        /// <summary>
-        /// Obtient ou défini la liste des produits de l'application
-        /// </summary>
-        public List<string> ManageProducts
-        {
-            get { return _ManageProducts; }
-            set { _ManageProducts = value; }
-        }
+      
 
         /// <summary>
         /// Obtien ou defini les produits de l'application
@@ -64,6 +47,16 @@ namespace StockManager.WF
         {
             get { return _Products; }
             set { _Products = value; }
+        }
+
+
+        /// <summary>
+        /// Obtien ou defini les catégories de l'application
+        /// </summary>
+        public List<string> Categories
+        {
+            get { return _Categories; }
+            set { _Categories = value; }
         }
         #endregion
 
@@ -86,9 +79,10 @@ namespace StockManager.WF
 
             // Produits
             Products = new List<Product>();
-            Products.Add(new ProductList("Naruto", "R205", "Manga Ninja XD"));
-            Products.Add(new ProductList("Naro", "REF105", "Manga  XD"));
-            Products.Add(new ProductList("Naru", "REF5", " Ninja "));
+            Products.Add(new ProductList("New Product", "", "", 0, 0));
+            Products.Add(new ProductList("Call of Duty", "COD_1", "FPS", 10, 70 )) ;
+            Products.Add(new ProductList("Black Desert Online", "BDO_1", "MMO-RPG", 20, 30));
+            Products.Add(new ProductList("Stardew Valley", "STVL_1", " Farm ", 50, 15));
             #endregion
 
 
@@ -96,16 +90,28 @@ namespace StockManager.WF
 
 
         #endregion
-        private void buttonManageCategory_Click(object sender, EventArgs e)
-        {
-            FormManageCategory formManageCategory = new FormManageCategory(ManageCategories);
-            formManageCategory.ShowDialog();
-        }
+        
 
         private void buttonManageProduct_Click(object sender, EventArgs e)
         {
             FormManageProduct formManageProduct = new FormManageProduct(_Products);
             formManageProduct.ShowDialog();
+        }
+
+        private void buttonManageCategory_Click(object sender, EventArgs e)
+        {
+            FormManageCategory formManageCategory = new FormManageCategory(_Categories);
+            formManageCategory.ShowDialog();
+        }
+
+        private void buttonEnteringStock_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonLeavingStock_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -124,14 +124,17 @@ namespace StockManager.WF.Model
 		/// </summary>
 		/// <param name="name">Nom du produit</param>
 		/// <param name="reference">Réference du produit</param>
-		/// <param name="price">Prix du produit</param>
-		/// <param name="stockedQuantity">Quantité stockée du produit</param>
 		/// <param name="description">Description du produit</param>
-		public Product(string name, string reference,  string description)
+		/// /// <param name="stockedQuantity">Quantité stockée du produit</param>
+		/// <param name="price">Prix du produit</param>
+
+		public Product(string name, string reference,  string description, int stockedQuantity, double price)
 		{
 			Name = name;
 			Reference = reference;
 			Description = description;
+			StockedQuantity = stockedQuantity;
+			Price = price;
 
 		}
 

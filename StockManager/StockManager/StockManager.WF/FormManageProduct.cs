@@ -59,13 +59,22 @@ namespace StockManager.WF
 		{
 			if (listBoxProductName.SelectedItem is string)
 			{
-				textBoxProductName.Text = ((string)listBoxProductName.SelectedItem) == "New product" ? "" : ((string)listBoxProductName.SelectedItem);
-				textBoxProductReference.Text = ((string)listBoxProductName.SelectedItem) == "New product" ? "" : ((string)listBoxProductName.SelectedItem);
+				listBoxProductName.Text = ((string)listBoxProductName.SelectedItem == "New Product" ? "" : ((string)(listBoxProductName.SelectedItem)));
+
 			}
 			if (listBoxProductName.SelectedItem is Product)
 			{
 				textBoxProductName.Text = ((Product)listBoxProductName.SelectedItem).Name;
 				textBoxProductReference.Text = ((Product)listBoxProductName.SelectedItem).Reference;
+				textBoxProductDescription.Text = ((Product)listBoxProductName.SelectedItem).Description;
+				double Prix = ((Product)listBoxProductName.SelectedItem).Price;
+				string PrixUnitaire = Prix.ToString();
+				textBoxProductPrice.Text = PrixUnitaire;
+				int Quantity = ((Product)listBoxProductName.SelectedItem).StockedQuantity;
+				string QuantityTotal = Quantity.ToString();
+				textBoxProductStockedQuantity.Text = QuantityTotal;
+
+
 			}
 		}
 
@@ -76,7 +85,10 @@ namespace StockManager.WF
 		private void ForceRefreshList()
 		{
 			int selectedIndex = listBoxProductName.SelectedIndex;
-
+			if (((Product)listBoxProductName.SelectedItem).Name == "New Product")
+			{
+				Products.Add(new ProductList("New Product", "", "", 0, 0));
+			}
 			listBoxProductName.DataSource = null;
 			listBoxProductName.DataSource = Products;
 			listBoxProductName.DisplayMember = nameof(Product.Name);
@@ -114,6 +126,32 @@ namespace StockManager.WF
 			/// <param name="sender"></param>
 			/// <param name="e"></param>
 			
+		}
+
+		private void buttonUpdateProduct_Click(object sender, EventArgs e)
+		{
+			updateProduct();
+			
+		}
+
+		private void buttonDeleteProduct_Click(object sender, EventArgs e)
+		{
+			if (((Product)listBoxProductName.SelectedItem).Name is Product)
+			{
+				if (((Product)listBoxProductName.SelectedItem).Name != "New product")
+				{
+					Products.Remove((Product)listBoxProductName.SelectedItem);
+					ForceRefreshList();
+				}
+			}
+		}
+
+		private void EnterXEnter(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)Keys.Enter)
+			{
+				updateProduct();
+			}
 		}
 	} 
 }
