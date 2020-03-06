@@ -19,3 +19,4 @@ C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockMan
 C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageCategory.resources
 C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageProduct.resources
 C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageEnteringStock.resources
+C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageLeavingStock.resources

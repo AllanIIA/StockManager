@@ -112,7 +112,8 @@ namespace StockManager.WF
 
         private void buttonLeavingStock_Click(object sender, EventArgs e)
         {
-
+            FormManageLeavingStock formManageLeavingStock = new FormManageLeavingStock(_Products);
+            formManageLeavingStock.ShowDialog();
         }
     }
 }

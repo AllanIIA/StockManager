@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormManageLeavingStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageLeavingStock.Designer.cs">
+      <DependentUpon>FormManageLeavingStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormManageCategory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormManageEnteringStock.resx">
       <DependentUpon>FormManageEnteringStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormManageLeavingStock.resx">
+      <DependentUpon>FormManageLeavingStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormManageProduct.resx">
       <DependentUpon>FormManageProduct.cs</DependentUpon>
