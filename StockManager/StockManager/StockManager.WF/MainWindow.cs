@@ -106,7 +106,8 @@ namespace StockManager.WF
 
         private void buttonEnteringStock_Click(object sender, EventArgs e)
         {
-
+            FormManageEnteringStock formManageEnteringStock = new FormManageEnteringStock(_Products);
+            formManageEnteringStock.ShowDialog();
         }
 
         private void buttonLeavingStock_Click(object sender, EventArgs e)
