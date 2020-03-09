@@ -19,7 +19,7 @@ namespace StockManager.WF
 		/// <summary>
 		/// Liste des catégories de l'application
 		/// </summary>
-		private List<string> _Categories;
+		private List<ProductCategory> _Categories;
 
 		#endregion
 
@@ -27,7 +27,7 @@ namespace StockManager.WF
 		/// <summary>
 		/// Obtient ou défini la liste des catégories de l'application
 		/// </summary>
-		public List<string> Categories
+		public List<ProductCategory> Categories
 		{
 			get { return _Categories; }
 			set { _Categories = value; }
@@ -42,12 +42,19 @@ namespace StockManager.WF
 		/// Constructeur Principale
 		/// </summary>
 		/// <param name="categories"></param>
-		public FormManageCategory(List<string> categories)
+		public FormManageCategory(List<ProductCategory> categories)
 		{
+
+			
+			Categories = categories;
+			ProductCategory categorie = new ProductCategory();
+			categorie.Label = "New Category";
+			Categories.Add(categorie);
 			InitializeComponent();
 			Categories = categories;
-			Categories.Add("New Category");
+			
 			listBoxCategoryName.DataSource = _Categories;
+			listBoxCategoryName.DisplayMember = "Label";
 		}
 
 
@@ -63,9 +70,9 @@ namespace StockManager.WF
 		/// <param name="e"></param>
 		private void listBoxCategoryName_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if(listBoxCategoryName.SelectedItem is string)
+			if(listBoxCategoryName.SelectedItem is ProductCategory)
 			{
-				textBoxCategoryName.Text = ((string)listBoxCategoryName.SelectedItem) == "New category" ? "" : ((string)listBoxCategoryName.SelectedItem);
+				textBoxCategoryName.Text = ((ProductCategory)listBoxCategoryName.SelectedItem).Label == "New category" ? "" : ((ProductCategory)listBoxCategoryName.SelectedItem).Label;
 			}
 		}
 
@@ -76,11 +83,15 @@ namespace StockManager.WF
 		/// <param name="e"></param>
 		private void buttonUpdateCategory_Click(object sender, EventArgs e)
 		{
-			if (listBoxCategoryName.SelectedItem is string)
+			if (listBoxCategoryName.SelectedItem is ProductCategory)
 			{
-				Categories.Remove((string)listBoxCategoryName.SelectedItem);
-				Categories.Add(textBoxCategoryName.Text);
-
+				Categories.Remove((ProductCategory)listBoxCategoryName.SelectedItem);
+				ProductCategory productCategory = new ProductCategory();
+				productCategory.Label = textBoxCategoryName.Text;
+				Categories.Add(productCategory);
+				ProductCategory categorie = new ProductCategory();
+				categorie.Label = "New Category";
+				Categories.Add(categorie);
 				ForceRefreshList();
 			}
 		}
@@ -94,13 +105,11 @@ namespace StockManager.WF
 			int selectedIndex = listBoxCategoryName.SelectedIndex;
 
 			listBoxCategoryName.DataSource = null;
-			if (!Categories.Contains("New Category"))
-			{
-				Categories.Add("New Category");
-			}
+			
 			listBoxCategoryName.DataSource = Categories;
 
-			listBoxCategoryName.SelectedItem = selectedIndex;
+			listBoxCategoryName.DisplayMember = "Label";
+			listBoxCategoryName.SelectedItem = 0;
 		}
 
 		/// <summary>
@@ -110,15 +119,15 @@ namespace StockManager.WF
 		/// <param name="e"></param>
 		private void buttonDeleteCategory_Click(object sender, EventArgs e)
 		{
-			if(listBoxCategoryName.SelectedItem is string)
+			if(listBoxCategoryName.SelectedItem is ProductCategory)
 			{
-				if(((string)listBoxCategoryName.SelectedItem) == "New Category")
+				if(((ProductCategory)listBoxCategoryName.SelectedItem).Label == "New Category")
 				{
 
 				}
 				else
 				{
-					Categories.Remove((string)listBoxCategoryName.SelectedItem);
+					Categories.Remove((ProductCategory)listBoxCategoryName.SelectedItem);
 					ForceRefreshList();
 				}
 			}

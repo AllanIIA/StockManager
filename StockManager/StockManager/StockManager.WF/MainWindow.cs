@@ -8,55 +8,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data.SqlClient; 
 namespace StockManager.WF
 {
     public partial class MainWindow : Form
     {
+
+        private static List<ProductCategory> _Categories = new List<ProductCategory>();
+        private static List<Product> _Products = new List<Product>();
+        public static string _ConnectionString = "Server=localhost;Database=StockManager;User Id=sa;Password=Sql2019;";
        
 
-		#region Attibutes
-
-		/// <summary>
-		/// Liste des catégories de l'application
-		/// </summary>
-		private List<string> _Categories;
-
-       
-
-        /// liste des produits de film
-        /// </summary>
-        private List<Product> _Products;
-        #endregion
-
-
-       
-       
-
-       
-
-        #region Methods
-        
-
-      
+        #region Attibutes
 
         /// <summary>
-        /// Obtien ou defini les produits de l'application
+        /// Liste des catégories de l'application
         /// </summary>
-        public List<Product> Products
-        {
-            get { return _Products; }
-            set { _Products = value; }
-        }
+        private List<ProductCategory> _Categorie;
 
+        #endregion
+        #region Methods
 
         /// <summary>
         /// Obtien ou defini les catégories de l'application
         /// </summary>
-        public List<string> Categories
+        public List<ProductCategory> Categorie
         {
-            get { return _Categories; }
-            set { _Categories = value; }
+            get { return _Categorie; }
+            set { _Categorie = value; }
         }
         #endregion
 
@@ -68,33 +47,121 @@ namespace StockManager.WF
         /// </summary>
         public MainWindow()
         {
+
+            using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
+            {
+                sqlConnection.Open(); //On ouvre la connexion
+                _Categorie = GetProductCategory(sqlConnection);
+                _Products = GetProduct(sqlConnection);
+            }
+
             InitializeComponent();
-
-            #region Initialisation des données
-
-            // Categories
-            ProductCategory Action = new ProductCategory("Action");
-
-
-
-            // Produits
-            Products = new List<Product>();
-            Products.Add(new ProductList("New Product", "", "", 0, 0));
-            Products.Add(new ProductList("Call of Duty", "COD_1", "FPS", 10, 70 )) ;
-            Products.Add(new ProductList("Black Desert Online", "BDO_1", "MMO-RPG", 20, 30));
-            Products.Add(new ProductList("Stardew Valley", "STVL_1", " Farm ", 50, 15));
-            #endregion
-
-
         }
 
 
         #endregion
-        
+        /// <summary>
+        /// Récupère les listes de Catégories
+        /// </summary>
+        /// <param name="sqlConnection"></param>
+        private static List<ProductCategory> GetProductCategory(SqlConnection sqlConnection)
+        {
+            List<ProductCategory> productCategories = new List<ProductCategory>();
+
+            using (SqlCommand command = sqlConnection.CreateCommand())
+            {
+                //On préciser le texte de la commande
+                command.CommandText = "SELECT Identifier, Label FROM ProductCategory";
+
+                //On exécute la requête et on obtient un SqlDataReader
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    //Tant qu'il y a des résultats, on passe au suivant
+                    while (reader.Read())
+                    {
+                        ProductCategory productCategory = new ProductCategory();
+                        _Categories.Add(productCategory);
+                        //On passe dans la boucle pour chaque ligne
+                        //GetInt32, GetString et IsDBNull attendent en paramètre
+                        //Le numéro d'index de la colonne ici :
+                        //0 : Identifier
+                        //1 : Label
+
+                        productCategory.Identifier = reader.GetInt32(0); //Lecture d'un entier
+                        //Pour les champs NULL, il faut tester avant avec IsDBNull()
+                        if (reader.IsDBNull(1) == false)
+                        {
+                            productCategory.Label = reader.GetString(1);  //Lecture d'une chaîne
+                        }
+                        //Console.WriteLine($"[{contactType.Identifier}] : {contactType.Label}");
+                    }
+                }
+            }
+
+            return productCategories;
+        }
+
+        /// <summary>
+        /// Récupère les listes de Catégories
+        /// </summary>
+        /// <param name="sqlConnection"></param>
+        private static List<Product> GetProduct(SqlConnection sqlConnection)
+        {
+            List<Product> products = new List<Product>();
+
+            using (SqlCommand command = sqlConnection.CreateCommand())
+            {
+                //On préciser le texte de la commande
+                command.CommandText = "SELECT Product.Identifier, Product.Nom, Product.Reference, Product.Price, Product.Description, Product.IdentifierProductCategory, Product.StoredQuantity " +
+                    "FROM Product";
+
+
+                //On exécute la requête et on obtient un SqlDataReader
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    //Tant qu'il y a des résultats, on passe au suivant
+                    while (reader.Read())
+                    {
+                        Product product = new Product();
+                        products.Add(product);
+
+                        product.Identifier = reader.GetInt32(0);
+
+                        if (reader.IsDBNull(1) == false)
+                        {
+                            product.Nom = reader.GetString(1);
+                        }
+                        if (reader.IsDBNull(2) == false)
+                        {
+                            product.Reference = reader.GetString(2);
+                        }
+                        if (reader.IsDBNull(3) == false)
+                        {
+                            product.Price = reader.GetDecimal(3);
+                        }
+                        if (reader.IsDBNull(4) == false)
+                        {
+                            product.Description = reader.GetString(4);
+                        }
+
+                        product.IdentifierProductCategory = reader.GetInt32(5);
+
+                        if (reader.IsDBNull(6) == false)
+                        {
+                            product.StoredQuantity = Convert.ToInt32(reader.GetDecimal(6));
+                        }
+
+                    }
+                }
+            }
+            return products;
+        }
+        #region Methods 
+        #endregion
 
         private void buttonManageProduct_Click(object sender, EventArgs e)
         {
-            FormManageProduct formManageProduct = new FormManageProduct(_Products);
+            FormManageProduct formManageProduct = new FormManageProduct(_Products, _ConnectionString);
             formManageProduct.ShowDialog();
         }
 
@@ -106,13 +173,13 @@ namespace StockManager.WF
 
         private void buttonEnteringStock_Click(object sender, EventArgs e)
         {
-            FormManageEnteringStock formManageEnteringStock = new FormManageEnteringStock(_Products);
+            FormManageEnteringStock formManageEnteringStock = new FormManageEnteringStock(_Products, true);
             formManageEnteringStock.ShowDialog();
         }
 
         private void buttonLeavingStock_Click(object sender, EventArgs e)
         {
-            FormManageLeavingStock formManageLeavingStock = new FormManageLeavingStock(_Products);
+            FormManageLeavingStock formManageLeavingStock = new FormManageLeavingStock(_Products, false);
             formManageLeavingStock.ShowDialog();
         }
     }

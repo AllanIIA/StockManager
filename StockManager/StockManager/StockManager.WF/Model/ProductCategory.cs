@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockManager.WF.Model
 {
-    class ProductCategory
+    public class ProductCategory
     {
 
 		#region Properties
@@ -43,7 +43,7 @@ namespace StockManager.WF.Model
 		public string Label
 		{
 			get { return _Label; }
-			private set { _Label = value; }
+			set { _Label = value; }
 		}
 
 		/// <summary>
@@ -58,16 +58,7 @@ namespace StockManager.WF.Model
 
 
 		#region Constructors
-		/// <summary>
-		/// Instancie une nouvelle catégorie de produits
-		/// </summary>
-		/// <param label="label">Label de la catégorie</param>
-		public ProductCategory(string label)
-		{
-			// défini le label de la catégorie
-			Label = label;
-			this.Products = new List<Product>();
-		}
+		
 
 		#endregion
 	}

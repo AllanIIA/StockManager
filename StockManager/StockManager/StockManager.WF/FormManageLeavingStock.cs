@@ -23,7 +23,7 @@ namespace StockManager.WF
 
         private List<Product> _Products;
 
-
+        private bool _IsEntry;
         #endregion
 
 
@@ -42,22 +42,29 @@ namespace StockManager.WF
         }
 
 
+        public bool IsEntry
+        {
+            get { return _IsEntry; }
+            set { _IsEntry = value; }
+        }
         #endregion
 
-        public FormManageLeavingStock(List<Product> products)
+        public FormManageLeavingStock(List<Product> products, bool isEntry)
         {
+            _Products = products;
+            _IsEntry = isEntry;
             InitializeComponent();
-            Products = products;
-            listBoxLeavingStock.DataSource = Products;
-            listBoxLeavingStock.DisplayMember = "Name";
-            listBoxLeavingStock.DisplayMember = nameof(Product.Name);
+            
+            listBoxLeavingStock.DataSource = _Products;
+            listBoxLeavingStock.DisplayMember = "Nom";
+            listBoxLeavingStock.DisplayMember = nameof(Product.Nom);
         }
 
         private void listBoxLeavingStock_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxLeavingStock.SelectedItem is Product)
             {
-                listBoxLeavingStock.Text = ((Product)listBoxLeavingStock.SelectedItem).Name;
+                listBoxLeavingStock.Text = ((Product)listBoxLeavingStock.SelectedItem).Nom;
                 ManageStock();
             }
         }
@@ -65,8 +72,8 @@ namespace StockManager.WF
 
         private void ManageStock()
         {
-            textBoxProductName.Text = ((Product)listBoxLeavingStock.SelectedItem).Name;
-            int Quantity = ((Product)listBoxLeavingStock.SelectedItem).StockedQuantity;
+            textBoxProductName.Text = ((Product)listBoxLeavingStock.SelectedItem).Nom;
+            int Quantity = ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity;
             string QuantityTotal = Quantity.ToString();
             textBoxProductStockedQuantity.Text = QuantityTotal;
 
@@ -78,9 +85,9 @@ namespace StockManager.WF
 
         private void updateStock()
         {
-            ((Product)listBoxLeavingStock.SelectedItem).Name = textBoxProductName.Text;
-            StockedQuantity = System.Convert.ToInt32(textBoxProductLeavingQuantity.Text);
-            ((Product)listBoxLeavingStock.SelectedItem).StockedQuantity -= StockedQuantity;
+            ((Product)listBoxLeavingStock.SelectedItem).Nom = textBoxProductName.Text;
+            StockedQuantity = Int32.Parse(textBoxProductLeavingQuantity.Text);
+            ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity -= StockedQuantity;
 
             ForceRefreshList();
         }
@@ -94,7 +101,7 @@ namespace StockManager.WF
 
             listBoxLeavingStock.DataSource = null;
             listBoxLeavingStock.DataSource = Products;
-            listBoxLeavingStock.DisplayMember = nameof(Product.Name);
+            listBoxLeavingStock.DisplayMember = nameof(Product.Nom);
             listBoxLeavingStock.SelectedIndex = selectedIndex;
         }
 
@@ -108,17 +115,30 @@ namespace StockManager.WF
 
         private void buttonUpdateStock_Click(object sender, EventArgs e)
         {
+
+            StockMovement stockMovement = new StockMovement();
+
+            stockMovement.IsStockEntry = IsEntry;
+            stockMovement.EmployeeCode = textBoxEmployeeCode.Text;
+            stockMovement.Date = DateTime.Now;
+
+            StockMovementProduct stockMovementProduct = new StockMovementProduct();
+
+            stockMovementProduct.IdentifierProduct = ((Product)listBoxLeavingStock.SelectedItem);
+            stockMovementProduct.IdentifierStockmovement = stockMovement;
+            stockMovementProduct.Quantity = Int32.Parse(textBoxProductLeavingQuantity.Text);
+
             if (listBoxLeavingStock.SelectedItem is Product)
             {
                 if (textBoxProductLeavingQuantity is null)
                 {
                     ForceRefreshList();
                 }
-                else if ((System.Convert.ToInt32(textBoxProductLeavingQuantity.Text)) < ((Product)listBoxLeavingStock.SelectedItem).StockedQuantity)
+                else if ((Int32.Parse(textBoxProductLeavingQuantity.Text)) < ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity)
                 {
-                    if ((System.Convert.ToInt32(textBoxProductLeavingQuantity.Text)
-                    == ((Product)listBoxLeavingStock.SelectedItem).StockedQuantity)
-                    && ((textBoxProductName.Text) == (((Product)listBoxLeavingStock.SelectedItem).Name))) ;
+                    if ((Int32.Parse(textBoxProductLeavingQuantity.Text)
+                    == ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity)
+                    && ((textBoxProductName.Text) == (((Product)listBoxLeavingStock.SelectedItem).Nom))) ;
                     {
                         updateStock();
                     }

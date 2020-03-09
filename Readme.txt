@@ -1,5 +1,5 @@
 Author : Blanchard Allan
 
-Version : 1.6
+Version : 1.7
 
 Project Name : StockManager

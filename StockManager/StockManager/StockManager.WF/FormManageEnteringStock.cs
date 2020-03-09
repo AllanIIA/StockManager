@@ -19,19 +19,23 @@ namespace StockManager.WF
         /// <summary>
         /// Quantity stockée
         /// </summary>
-        private int _StockedQuantity;
+        private int _StoredQuantity;
 
         private List<Product> _Products;
 
-       
+        private bool _IsEntry;
+
+        
+
+
         #endregion
 
 
         #region  Methods
-        public int StockedQuantity
+        public int StoredQuantity
         {
-            get { return _StockedQuantity; }
-            set { _StockedQuantity = value; }
+            get { return _StoredQuantity; }
+            set { _StoredQuantity = value; }
         }
 
 
@@ -41,23 +45,29 @@ namespace StockManager.WF
             set { _Products = value; }
         }
 
-
+        public bool IsEntry
+        {
+            get { return _IsEntry; }
+            set { _IsEntry = value; }
+        }
         #endregion
 
-        public FormManageEnteringStock(List<Product> products)
+        public FormManageEnteringStock(List<Product> products, bool isEntry)
         {
+            _IsEntry = isEntry;
+
             InitializeComponent();
             Products = products;
             listBoxEnteringStock.DataSource = Products;
             listBoxEnteringStock.DisplayMember = "Name";
-            listBoxEnteringStock.DisplayMember = nameof(Product.Name);
+            listBoxEnteringStock.DisplayMember = nameof(Product.Nom);
         }
 
         private void listBoxEnteringStock_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxEnteringStock.SelectedItem is Product)
             {
-                listBoxEnteringStock.Text = ((Product)listBoxEnteringStock.SelectedItem).Name;
+                listBoxEnteringStock.Text = ((Product)listBoxEnteringStock.SelectedItem).Nom;
                 ManageStock();
             }
 
@@ -66,8 +76,8 @@ namespace StockManager.WF
 
         private void ManageStock()
         {
-            textBoxProductName.Text = ((Product)listBoxEnteringStock.SelectedItem).Name;
-            int Quantity = ((Product)listBoxEnteringStock.SelectedItem).StockedQuantity;
+            textBoxProductName.Text = ((Product)listBoxEnteringStock.SelectedItem).Nom;
+            int Quantity = ((Product)listBoxEnteringStock.SelectedItem).StoredQuantity;
             string QuantityTotal = Quantity.ToString();
             textBoxProductStockedQuantity.Text = QuantityTotal;
 
@@ -79,9 +89,10 @@ namespace StockManager.WF
 
         private void updateStock()
         {
-            ((Product)listBoxEnteringStock.SelectedItem).Name = textBoxProductName.Text;
-            StockedQuantity = System.Convert.ToInt32(textBoxQuantityEnteringStock.Text);
-            ((Product)listBoxEnteringStock.SelectedItem).StockedQuantity += StockedQuantity;
+
+            ((Product)listBoxEnteringStock.SelectedItem).Nom = textBoxProductName.Text;
+            StoredQuantity = Int32.Parse(textBoxQuantityEnteringStock.Text);
+            ((Product)listBoxEnteringStock.SelectedItem).StoredQuantity += StoredQuantity;
 
             ForceRefreshList();
         }
@@ -95,7 +106,7 @@ namespace StockManager.WF
            
             listBoxEnteringStock.DataSource = null;
             listBoxEnteringStock.DataSource = Products;
-            listBoxEnteringStock.DisplayMember = nameof(Product.Name);
+            listBoxEnteringStock.DisplayMember = nameof(Product.Nom);
             listBoxEnteringStock.SelectedIndex = selectedIndex;
         }
 
@@ -109,15 +120,27 @@ namespace StockManager.WF
 
         private void buttonUpdateStock_Click(object sender, EventArgs e)
         {
+            StockMovement stockMovement = new StockMovement();
+
+            stockMovement.IsStockEntry = IsEntry;
+            stockMovement.EmployeeCode = textBoxEmployeeCode.Text;
+            stockMovement.Date = DateTime.Now;
+
+            StockMovementProduct stockMovementProduct = new StockMovementProduct();
+
+            stockMovementProduct.IdentifierProduct = ((Product)listBoxEnteringStock.SelectedItem);
+            stockMovementProduct.IdentifierStockmovement = stockMovement;
+            stockMovementProduct.Quantity = Int32.Parse(textBoxQuantityEnteringStock.Text);
+
             if (listBoxEnteringStock.SelectedItem is Product)
             {
                 if (textBoxQuantityEnteringStock is null)
                 {
                     ForceRefreshList();
                 }
-                else if ((System.Convert.ToInt32(textBoxQuantityEnteringStock.Text) 
-                    == ((Product)listBoxEnteringStock.SelectedItem).StockedQuantity)
-                    && ((textBoxProductName.Text) == (((Product)listBoxEnteringStock.SelectedItem).Name)));
+                else if ((Int32.Parse(textBoxQuantityEnteringStock.Text) 
+                    == ((Product)listBoxEnteringStock.SelectedItem).StoredQuantity)
+                    && ((textBoxProductName.Text) == (((Product)listBoxEnteringStock.SelectedItem).Nom)));
                 {
                     updateStock();
                 }

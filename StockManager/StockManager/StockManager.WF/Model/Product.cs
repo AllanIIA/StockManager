@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockManager.WF.Model
 {
-	public abstract class Product
+	public class Product
     {
 		#region Proprietes
 		/// <summary>
@@ -17,7 +17,7 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Nom du produit
 		/// </summary>
-		private string _Name;
+		private string _Nom;
 
 		/// <summary>
 		/// Reference du produit
@@ -27,7 +27,7 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Prix du produit
 		/// </summary>
-		private double _Price;
+		private Decimal _Price;
 
 		/// <summary>
 		/// Description du produit
@@ -37,7 +37,7 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Quantité stockée du produit
 		/// </summary>
-		private int _StockedQuantity;
+		private int _StoredQuantity;
 
 		/// <summary>
 		/// Liaison Produit Catégory
@@ -62,10 +62,10 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Nom du produit
 		/// </summary>
-		public string Name
+		public string Nom
 		{
-			get { return _Name; }
-			set { _Name = value; }
+			get { return _Nom; }
+			set { _Nom = value; }
 		}
 
 
@@ -82,7 +82,7 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Prix du produit
 		/// </summary>
-		public double Price
+		public Decimal Price
 		{
 			get { return _Price; }
 			set { _Price = value; }
@@ -102,10 +102,10 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Quantité stockée du produit
 		/// </summary>
-		public int StockedQuantity
+		public int StoredQuantity
 		{
-			get { return _StockedQuantity; }
-			set { _StockedQuantity = value; }
+			get { return _StoredQuantity; }
+			set { _StoredQuantity = value; }
 		}
 
 		/// <summary>
@@ -122,21 +122,13 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Produit
 		/// </summary>
-		/// <param name="name">Nom du produit</param>
+		/// <param name="nom">Nom du produit</param>
 		/// <param name="reference">Réference du produit</param>
 		/// <param name="description">Description du produit</param>
-		/// /// <param name="stockedQuantity">Quantité stockée du produit</param>
+		/// /// <param name="storedQuantity">Quantité stockée du produit</param>
 		/// <param name="price">Prix du produit</param>
 
-		public Product(string name, string reference,  string description, int stockedQuantity, double price)
-		{
-			Name = name;
-			Reference = reference;
-			Description = description;
-			StockedQuantity = stockedQuantity;
-			Price = price;
-
-		}
+		
 
 		#endregion
 

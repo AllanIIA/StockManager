@@ -20,3 +20,16 @@ C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockMan
 C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageProduct.resources
 C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageEnteringStock.resources
 C:\git\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageLeavingStock.resources
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.csprojAssemblyReference.cache
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageCategory.resources
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageEnteringStock.resources
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageLeavingStock.resources
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.FormManageProduct.resources
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.MainWindow.resources
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.Properties.Resources.resources
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.csproj.GenerateResource.cache
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.exe
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\obj\Debug\StockManager.WF.pdb
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.exe.config
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.exe
+C:\Users\ablanc\source\repos\StockManager\StockManager\StockManager\StockManager.WF\bin\Debug\StockManager.WF.pdb

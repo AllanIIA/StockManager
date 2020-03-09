@@ -22,12 +22,12 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Code de l'employée qui a déplacé le produit
 		/// </summary>
-		private int _EmployeeCode;
+		private string _EmployeeCode;
 
 		/// <summary>
 		/// Stock d'entrée
 		/// </summary>
-		private int _IsStockEntry;
+		private bool _IsStockEntry;
 		#endregion
 
 		#region Attributes
@@ -43,7 +43,7 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Date de mouvement du produit
 		/// </summary>
-		public DateTime Date
+		public DateTime  Date
 		{
 			get { return _Date; }
 			set { _Date = value; }
@@ -52,7 +52,7 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Code de l'employée qui a déplacé le produit
 		/// </summary>
-		public int EmployeeCode
+		public string EmployeeCode
 		{
 			get { return _EmployeeCode; }
 			set { _EmployeeCode = value; }
@@ -62,7 +62,7 @@ namespace StockManager.WF.Model
 		/// <summary>
 		/// Stock d'entrée
 		/// </summary>
-		public int IsStockEntry
+		public bool IsStockEntry
 		{
 			get { return _IsStockEntry; }
 			set { _IsStockEntry = value; }

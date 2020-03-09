@@ -55,55 +55,57 @@
             // 
             // textBoxProductName
             // 
-            this.textBoxProductName.Location = new System.Drawing.Point(436, 186);
+            this.textBoxProductName.Location = new System.Drawing.Point(433, 70);
             this.textBoxProductName.Name = "textBoxProductName";
-            this.textBoxProductName.Size = new System.Drawing.Size(118, 20);
+            this.textBoxProductName.Size = new System.Drawing.Size(185, 20);
             this.textBoxProductName.TabIndex = 1;
             // 
             // textBoxProductPrice
             // 
-            this.textBoxProductPrice.Location = new System.Drawing.Point(438, 255);
+            this.textBoxProductPrice.Location = new System.Drawing.Point(433, 124);
             this.textBoxProductPrice.Name = "textBoxProductPrice";
-            this.textBoxProductPrice.Size = new System.Drawing.Size(117, 20);
+            this.textBoxProductPrice.Size = new System.Drawing.Size(185, 20);
             this.textBoxProductPrice.TabIndex = 2;
             // 
             // textBoxProductReference
             // 
-            this.textBoxProductReference.Location = new System.Drawing.Point(437, 220);
+            this.textBoxProductReference.Location = new System.Drawing.Point(433, 96);
             this.textBoxProductReference.Name = "textBoxProductReference";
-            this.textBoxProductReference.Size = new System.Drawing.Size(117, 20);
+            this.textBoxProductReference.Size = new System.Drawing.Size(185, 20);
             this.textBoxProductReference.TabIndex = 3;
             // 
             // textBoxProductDescription
             // 
-            this.textBoxProductDescription.Location = new System.Drawing.Point(400, 290);
+            this.textBoxProductDescription.Location = new System.Drawing.Point(433, 160);
+            this.textBoxProductDescription.Multiline = true;
             this.textBoxProductDescription.Name = "textBoxProductDescription";
-            this.textBoxProductDescription.Size = new System.Drawing.Size(155, 20);
+            this.textBoxProductDescription.Size = new System.Drawing.Size(185, 106);
             this.textBoxProductDescription.TabIndex = 4;
+            this.textBoxProductDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterXEnter);
             // 
             // textBoxProductStockedQuantity
             // 
-            this.textBoxProductStockedQuantity.Location = new System.Drawing.Point(437, 327);
+            this.textBoxProductStockedQuantity.Location = new System.Drawing.Point(433, 282);
             this.textBoxProductStockedQuantity.Name = "textBoxProductStockedQuantity";
-            this.textBoxProductStockedQuantity.Size = new System.Drawing.Size(118, 20);
+            this.textBoxProductStockedQuantity.ReadOnly = true;
+            this.textBoxProductStockedQuantity.Size = new System.Drawing.Size(185, 20);
             this.textBoxProductStockedQuantity.TabIndex = 5;
-            this.textBoxProductStockedQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterXEnter);
             // 
             // labelProductName
             // 
             this.labelProductName.AutoSize = true;
             this.labelProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductName.Location = new System.Drawing.Point(280, 186);
+            this.labelProductName.Location = new System.Drawing.Point(284, 68);
             this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(118, 20);
+            this.labelProductName.Size = new System.Drawing.Size(126, 20);
             this.labelProductName.TabIndex = 6;
-            this.labelProductName.Text = "Nom du Produit";
+            this.labelProductName.Text = "Nom du Produit :";
             // 
             // labelProductReference
             // 
             this.labelProductReference.AutoSize = true;
             this.labelProductReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductReference.Location = new System.Drawing.Point(280, 220);
+            this.labelProductReference.Location = new System.Drawing.Point(284, 96);
             this.labelProductReference.Name = "labelProductReference";
             this.labelProductReference.Size = new System.Drawing.Size(92, 20);
             this.labelProductReference.TabIndex = 7;
@@ -113,7 +115,7 @@
             // 
             this.labelProductPrice.AutoSize = true;
             this.labelProductPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductPrice.Location = new System.Drawing.Point(280, 255);
+            this.labelProductPrice.Location = new System.Drawing.Point(284, 122);
             this.labelProductPrice.Name = "labelProductPrice";
             this.labelProductPrice.Size = new System.Drawing.Size(118, 20);
             this.labelProductPrice.TabIndex = 8;
@@ -123,7 +125,7 @@
             // 
             this.labelProductDescription.AutoSize = true;
             this.labelProductDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductDescription.Location = new System.Drawing.Point(279, 290);
+            this.labelProductDescription.Location = new System.Drawing.Point(284, 158);
             this.labelProductDescription.Name = "labelProductDescription";
             this.labelProductDescription.Size = new System.Drawing.Size(97, 20);
             this.labelProductDescription.TabIndex = 9;
@@ -133,7 +135,7 @@
             // 
             this.labelProductStokedQuantity.AutoSize = true;
             this.labelProductStokedQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductStokedQuantity.Location = new System.Drawing.Point(280, 327);
+            this.labelProductStokedQuantity.Location = new System.Drawing.Point(284, 282);
             this.labelProductStokedQuantity.Name = "labelProductStokedQuantity";
             this.labelProductStokedQuantity.Size = new System.Drawing.Size(132, 20);
             this.labelProductStokedQuantity.TabIndex = 10;
@@ -152,9 +154,9 @@
             // 
             // buttonUpdateProduct
             // 
-            this.buttonUpdateProduct.Location = new System.Drawing.Point(283, 384);
+            this.buttonUpdateProduct.Location = new System.Drawing.Point(283, 365);
             this.buttonUpdateProduct.Name = "buttonUpdateProduct";
-            this.buttonUpdateProduct.Size = new System.Drawing.Size(115, 31);
+            this.buttonUpdateProduct.Size = new System.Drawing.Size(149, 31);
             this.buttonUpdateProduct.TabIndex = 12;
             this.buttonUpdateProduct.Text = "Ajouter / Mise à jour";
             this.buttonUpdateProduct.UseVisualStyleBackColor = true;
@@ -162,9 +164,9 @@
             // 
             // buttonDeleteProduct
             // 
-            this.buttonDeleteProduct.Location = new System.Drawing.Point(461, 384);
+            this.buttonDeleteProduct.Location = new System.Drawing.Point(467, 365);
             this.buttonDeleteProduct.Name = "buttonDeleteProduct";
-            this.buttonDeleteProduct.Size = new System.Drawing.Size(75, 31);
+            this.buttonDeleteProduct.Size = new System.Drawing.Size(108, 31);
             this.buttonDeleteProduct.TabIndex = 13;
             this.buttonDeleteProduct.Text = "Supprimer";
             this.buttonDeleteProduct.UseVisualStyleBackColor = true;
