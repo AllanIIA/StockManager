@@ -161,7 +161,7 @@ namespace StockManager.WF
 
         private void buttonManageProduct_Click(object sender, EventArgs e)
         {
-            FormManageProduct formManageProduct = new FormManageProduct(_Products, _ConnectionString);
+            FormManageProduct formManageProduct = new FormManageProduct(_Products, _Categories, _ConnectionString);
             formManageProduct.ShowDialog();
         }
 
