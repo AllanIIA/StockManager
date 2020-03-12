@@ -156,31 +156,54 @@ namespace StockManager.WF
             }
             return products;
         }
-        #region Methods 
-        #endregion
+
 
         private void buttonManageProduct_Click(object sender, EventArgs e)
         {
             FormManageProduct formManageProduct = new FormManageProduct(_Products, _Categories, _ConnectionString);
             formManageProduct.ShowDialog();
+            using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
+            {
+                sqlConnection.Open(); //On ouvre la connexion
+                _Categorie = GetProductCategory(sqlConnection);
+                _Products = GetProduct(sqlConnection);
+            }
         }
 
         private void buttonManageCategory_Click(object sender, EventArgs e)
         {
             FormManageCategory formManageCategory = new FormManageCategory(_Categories);
             formManageCategory.ShowDialog();
+            using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
+            {
+                sqlConnection.Open(); //On ouvre la connexion
+                _Categorie = GetProductCategory(sqlConnection);
+                _Products = GetProduct(sqlConnection);
+            }
         }
 
         private void buttonEnteringStock_Click(object sender, EventArgs e)
         {
-            FormManageEnteringStock formManageEnteringStock = new FormManageEnteringStock(_Products, true);
+            FormManageEnteringStock formManageEnteringStock = new FormManageEnteringStock(_Products, true, _ConnectionString);
             formManageEnteringStock.ShowDialog();
+            using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
+            {
+                sqlConnection.Open(); //On ouvre la connexion
+                _Categorie = GetProductCategory(sqlConnection);
+                _Products = GetProduct(sqlConnection);
+            }
         }
 
         private void buttonLeavingStock_Click(object sender, EventArgs e)
         {
-            FormManageLeavingStock formManageLeavingStock = new FormManageLeavingStock(_Products, false);
+            FormManageLeavingStock formManageLeavingStock = new FormManageLeavingStock(_Products, false, _ConnectionString);
             formManageLeavingStock.ShowDialog();
+            using (SqlConnection sqlConnection = new SqlConnection(_ConnectionString))
+            {
+                sqlConnection.Open(); //On ouvre la connexion
+                _Categorie = GetProductCategory(sqlConnection);
+                _Products = GetProduct(sqlConnection);
+            }
         }
     }
 }

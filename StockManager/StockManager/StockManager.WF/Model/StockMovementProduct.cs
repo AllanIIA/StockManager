@@ -18,12 +18,12 @@ namespace StockManager.WF.Model
         /// <summary>
         /// Identifiant du produit
         /// </summary>
-        private Product _IdentifierProduct;
+        private int _IdentifierProduct;
 
         /// <summary>
         /// Identifiant du StockMovement
         /// </summary>
-        private StockMovement _IdentifierStockmovement;
+        private int  _IdentifierStockmovement;
 
         /// <summary>
         /// Quantité du StcokMovementProduct
@@ -48,7 +48,7 @@ namespace StockManager.WF.Model
         /// <summary>
         /// Identifiant du produit
         /// </summary>
-        public Product IdentifierProduct
+        public int IdentifierProduct
         {
             get { return _IdentifierProduct; }
             set { _IdentifierProduct = value; }
@@ -57,7 +57,7 @@ namespace StockManager.WF.Model
         /// <summary>
         /// Identifiant du StockMovement
         /// </summary>
-        public StockMovement IdentifierStockmovement
+        public int IdentifierStockmovement
         {
             get { return _IdentifierStockmovement; }
             set { _IdentifierStockmovement = value; }

@@ -307,7 +307,7 @@ namespace StockManager.WF
             {
                 // Sinon l'ajoute.
                 Product product = new Product();
-                product.Nom = "Nouveau produit";
+                product.Nom = "New Product";
                 ProductCategory productCategory = new ProductCategory();
                 productCategory.Identifier = -1;
                 productCategory.Label = "";

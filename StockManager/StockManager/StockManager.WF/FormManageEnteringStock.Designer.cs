@@ -75,7 +75,7 @@
             this.textBoxQuantityEnteringStock.Name = "textBoxQuantityEnteringStock";
             this.textBoxQuantityEnteringStock.Size = new System.Drawing.Size(100, 20);
             this.textBoxQuantityEnteringStock.TabIndex = 14;
-            this.textBoxQuantityEnteringStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterXEnter);
+
             // 
             // textBoxProductStockedQuantity
             // 

@@ -101,7 +101,6 @@
             this.textBoxProductLeavingQuantity.Name = "textBoxProductLeavingQuantity";
             this.textBoxProductLeavingQuantity.Size = new System.Drawing.Size(100, 20);
             this.textBoxProductLeavingQuantity.TabIndex = 22;
-            this.textBoxProductLeavingQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterXEnter);
             // 
             // labelManageLeavingStock
             // 

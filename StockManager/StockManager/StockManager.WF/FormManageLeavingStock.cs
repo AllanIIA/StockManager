@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace StockManager.WF
         private List<Product> _Products;
 
         private bool _IsEntry;
+
+        private string _ConnetionString;
         #endregion
 
 
@@ -47,12 +50,19 @@ namespace StockManager.WF
             get { return _IsEntry; }
             set { _IsEntry = value; }
         }
+
+        public string ConnectionString
+        {
+            get { return _ConnetionString; }
+            set { _ConnetionString = value; }
+        }
         #endregion
 
-        public FormManageLeavingStock(List<Product> products, bool isEntry)
+        public FormManageLeavingStock(List<Product> products, bool isEntry, string connectionString)
         {
             _Products = products;
             _IsEntry = isEntry;
+            ConnectionString = connectionString;
             InitializeComponent();
             
             listBoxLeavingStock.DataSource = _Products;
@@ -64,7 +74,7 @@ namespace StockManager.WF
         {
             if (listBoxLeavingStock.SelectedItem is Product)
             {
-                listBoxLeavingStock.Text = ((Product)listBoxLeavingStock.SelectedItem).Nom;
+                textBoxProductStockedQuantity.Text = ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity.ToString();
                 ManageStock();
             }
         }
@@ -83,67 +93,141 @@ namespace StockManager.WF
 
         }
 
-        private void updateStock()
-        {
-            ((Product)listBoxLeavingStock.SelectedItem).Nom = textBoxProductName.Text;
-            StockedQuantity = Int32.Parse(textBoxProductLeavingQuantity.Text);
-            ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity -= StockedQuantity;
+       
 
-            ForceRefreshList();
-        }
 
-        /// <summary>
-		/// Permet d'ajouter un produit sans écraser les autres produits
-		/// </summary>
-		private void ForceRefreshList()
-        {
-            int selectedIndex = listBoxLeavingStock.SelectedIndex;
-
-            listBoxLeavingStock.DataSource = null;
-            listBoxLeavingStock.DataSource = Products;
-            listBoxLeavingStock.DisplayMember = nameof(Product.Nom);
-            listBoxLeavingStock.SelectedIndex = selectedIndex;
-        }
-
-        private void EnterXEnter(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                updateStock();
-            }
-        }
 
         private void buttonUpdateStock_Click(object sender, EventArgs e)
         {
-
-            StockMovement stockMovement = new StockMovement();
-
-            stockMovement.IsStockEntry = IsEntry;
-            stockMovement.EmployeeCode = textBoxEmployeeCode.Text;
-            stockMovement.Date = DateTime.Now;
-
             StockMovementProduct stockMovementProduct = new StockMovementProduct();
+            stockMovementProduct.IdentifierProduct = ((Product)listBoxLeavingStock.SelectedItem).Identifier;
 
-            stockMovementProduct.IdentifierProduct = ((Product)listBoxLeavingStock.SelectedItem);
-            stockMovementProduct.IdentifierStockmovement = stockMovement;
-            stockMovementProduct.Quantity = Int32.Parse(textBoxProductLeavingQuantity.Text);
-
-            if (listBoxLeavingStock.SelectedItem is Product)
+            if (!(((Product)listBoxLeavingStock.SelectedItem).StoredQuantity - Decimal.Parse(textBoxProductLeavingQuantity.Text) < 0))
             {
-                if (textBoxProductLeavingQuantity is null)
+
+            
+                using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
                 {
-                    ForceRefreshList();
-                }
-                else if ((Int32.Parse(textBoxProductLeavingQuantity.Text)) < ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity)
-                {
-                    if ((Int32.Parse(textBoxProductLeavingQuantity.Text)
-                    == ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity)
-                    && ((textBoxProductName.Text) == (((Product)listBoxLeavingStock.SelectedItem).Nom))) ;
+                    sqlConnection.Open();
+
+                    Decimal Quantity = ((Product)listBoxLeavingStock.SelectedItem).StoredQuantity - Decimal.Parse(textBoxProductLeavingQuantity.Text);
+
+                    using (SqlCommand command = sqlConnection.CreateCommand())
                     {
-                        updateStock();
+                        command.CommandText = $"UPDATE Product SET "
+                            + $"[StoredQuantity] = @StoredQuantity "
+                            + $"WHERE [Identifier] = @Identifier ";
+
+                        command.Parameters.AddWithValue("StoredQuantity", Quantity);
+                        command.Parameters.AddWithValue("Identifier", ((Product)listBoxLeavingStock.SelectedItem).Identifier);
+
+                        command.ExecuteNonQuery();
+
+                        command.CommandText = $"INSERT INTO StockMovement([Date], [EmployeeCode], [IsStockEntry]) " +
+                            $"output INSERTED.[Identifier]" +
+                            $" VALUES (@Date, @EmployeeCode, @IsStockEntry)";
+
+                        command.Parameters.AddWithValue("Date", DateTime.Now);
+                        command.Parameters.AddWithValue("EmployeeCode", textBoxEmployeeCode.Text);
+                        command.Parameters.AddWithValue("IsStockEntry", _IsEntry);
+
+                        // On récupère l'identifiant du stockMovement nouvellement ajouté,
+                        // puisqu'il est nécessaire dans l'insertion d'un nouveau stockMovementProduct.
+                        stockMovementProduct.IdentifierStockmovement = (int)command.ExecuteScalar();
+
+                        command.CommandText = $"INSERT INTO StockMovementProduct([IdentifierProduct]," +
+                            $" [IdentifierStockMovement], [Quantity]) " +
+                            $" VALUES (@IdentifierProduct, @IdentifierStockMovement, @Quantity)";
+
+                        command.Parameters.AddWithValue("IdentifierProduct",
+                            stockMovementProduct.IdentifierProduct);
+                        command.Parameters.AddWithValue("IdentifierStockMovement",
+                            stockMovementProduct.IdentifierStockmovement);
+                        command.Parameters.AddWithValue("Quantity",
+                            stockMovementProduct.Quantity);
+
+                        command.ExecuteNonQuery();
+
                     }
+
+                    ForceRefreshList(sqlConnection);
+
+                    sqlConnection.Close();
                 }
+
             }
         }
+        #region Sql
+        // <summary>
+        /// met à jour la liste des produits.
+        /// </summary>
+        public void ForceRefreshList(SqlConnection sqlConnection)
+        {
+            listBoxLeavingStock.DataSource = null;
+
+            Products = GetProduct(sqlConnection);
+            listBoxLeavingStock.DataSource = Products;
+
+            listBoxLeavingStock.DisplayMember = "Nom";
+            listBoxLeavingStock.SelectedIndex = 0;
+
+        }
+
+
+        private static List<Product> GetProduct(SqlConnection sqlConnection)
+        {
+            List<Product> products = new List<Product>();
+
+            using (SqlCommand command = sqlConnection.CreateCommand())
+            {
+
+                command.CommandText = "SELECT Product.Identifier, Product.Nom, Product.Reference, Product.Price, Product.Description, Product.IdentifierProductCategory, Product.StoredQuantity " +
+                    "FROM Product ";
+
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        {
+                            Product product = new Product();
+                            products.Add(product);
+
+                            product.Identifier = reader.GetInt32(0);
+
+                            if (reader.IsDBNull(1) == false)
+                            {
+                                product.Nom = reader.GetString(1);
+                            }
+                            if (reader.IsDBNull(2) == false)
+                            {
+                                product.Reference = reader.GetString(2);
+                            }
+                            if (reader.IsDBNull(3) == false)
+                            {
+                                product.Price = reader.GetDecimal(3);
+                            }
+                            if (reader.IsDBNull(4) == false)
+                            {
+                                product.Description = reader.GetString(4);
+                            }
+
+                            product.IdentifierProductCategory = reader.GetInt32(5);
+
+                            if (reader.IsDBNull(6) == false)
+                            {
+                                product.StoredQuantity = Convert.ToInt32(reader.GetDecimal(6));
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            return products;
+        }
+        #endregion
+
     }
+
 }
