@@ -38,6 +38,8 @@
             // 
             // listBoxCategoryName
             // 
+            this.listBoxCategoryName.BackColor = System.Drawing.Color.Azure;
+            this.listBoxCategoryName.ForeColor = System.Drawing.Color.MediumAquamarine;
             this.listBoxCategoryName.FormattingEnabled = true;
             this.listBoxCategoryName.Location = new System.Drawing.Point(34, 63);
             this.listBoxCategoryName.Name = "listBoxCategoryName";
@@ -88,16 +90,18 @@
             // 
             // textBoxCategoryName
             // 
+            this.textBoxCategoryName.BackColor = System.Drawing.Color.Azure;
+            this.textBoxCategoryName.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxCategoryName.Location = new System.Drawing.Point(464, 86);
             this.textBoxCategoryName.Name = "textBoxCategoryName";
             this.textBoxCategoryName.Size = new System.Drawing.Size(233, 20);
             this.textBoxCategoryName.TabIndex = 5;
-          
             // 
             // FormManageCategory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.textBoxCategoryName);
             this.Controls.Add(this.labelCategoryName);
@@ -105,6 +109,7 @@
             this.Controls.Add(this.buttonDeleteCategory);
             this.Controls.Add(this.buttonUpdateCategory);
             this.Controls.Add(this.listBoxCategoryName);
+            this.ForeColor = System.Drawing.Color.Blue;
             this.Name = "FormManageCategory";
             this.Text = "FormManageCategory";
             this.ResumeLayout(false);

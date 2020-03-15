@@ -43,6 +43,8 @@
             // 
             // listBoxLeavingStock
             // 
+            this.listBoxLeavingStock.BackColor = System.Drawing.Color.Azure;
+            this.listBoxLeavingStock.ForeColor = System.Drawing.Color.SeaGreen;
             this.listBoxLeavingStock.FormattingEnabled = true;
             this.listBoxLeavingStock.Location = new System.Drawing.Point(30, 25);
             this.listBoxLeavingStock.Name = "listBoxLeavingStock";
@@ -82,6 +84,8 @@
             // 
             // textBoxProductName
             // 
+            this.textBoxProductName.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductName.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductName.Location = new System.Drawing.Point(402, 121);
             this.textBoxProductName.Name = "textBoxProductName";
             this.textBoxProductName.ReadOnly = true;
@@ -90,6 +94,8 @@
             // 
             // textBoxProductStockedQuantity
             // 
+            this.textBoxProductStockedQuantity.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductStockedQuantity.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductStockedQuantity.Location = new System.Drawing.Point(402, 200);
             this.textBoxProductStockedQuantity.Name = "textBoxProductStockedQuantity";
             this.textBoxProductStockedQuantity.Size = new System.Drawing.Size(100, 20);
@@ -97,6 +103,8 @@
             // 
             // textBoxProductLeavingQuantity
             // 
+            this.textBoxProductLeavingQuantity.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductLeavingQuantity.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductLeavingQuantity.Location = new System.Drawing.Point(402, 234);
             this.textBoxProductLeavingQuantity.Name = "textBoxProductLeavingQuantity";
             this.textBoxProductLeavingQuantity.Size = new System.Drawing.Size(100, 20);
@@ -115,16 +123,19 @@
             // 
             // buttonUpdateStock
             // 
+            this.buttonUpdateStock.BackColor = System.Drawing.Color.DarkGray;
             this.buttonUpdateStock.Location = new System.Drawing.Point(591, 313);
             this.buttonUpdateStock.Name = "buttonUpdateStock";
             this.buttonUpdateStock.Size = new System.Drawing.Size(123, 56);
             this.buttonUpdateStock.TabIndex = 24;
             this.buttonUpdateStock.Text = "Mettre à jour";
-            this.buttonUpdateStock.UseVisualStyleBackColor = true;
+            this.buttonUpdateStock.UseVisualStyleBackColor = false;
             this.buttonUpdateStock.Click += new System.EventHandler(this.buttonUpdateStock_Click);
             // 
             // textBoxEmployeeCode
             // 
+            this.textBoxEmployeeCode.BackColor = System.Drawing.Color.Azure;
+            this.textBoxEmployeeCode.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxEmployeeCode.Location = new System.Drawing.Point(402, 163);
             this.textBoxEmployeeCode.Name = "textBoxEmployeeCode";
             this.textBoxEmployeeCode.Size = new System.Drawing.Size(100, 20);
@@ -144,6 +155,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.labelEmployeeCode);
             this.Controls.Add(this.textBoxEmployeeCode);
@@ -156,6 +168,7 @@
             this.Controls.Add(this.labelLeavingStock);
             this.Controls.Add(this.labelProductName);
             this.Controls.Add(this.listBoxLeavingStock);
+            this.ForeColor = System.Drawing.Color.Blue;
             this.Name = "FormManageLeavingStock";
             this.Text = "FormManageLeavingStock";
             this.ResumeLayout(false);

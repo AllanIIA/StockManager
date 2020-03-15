@@ -48,6 +48,8 @@
             // 
             // listBoxProductName
             // 
+            this.listBoxProductName.BackColor = System.Drawing.Color.Azure;
+            this.listBoxProductName.ForeColor = System.Drawing.Color.SeaGreen;
             this.listBoxProductName.FormattingEnabled = true;
             this.listBoxProductName.Location = new System.Drawing.Point(35, 34);
             this.listBoxProductName.Name = "listBoxProductName";
@@ -57,6 +59,8 @@
             // 
             // textBoxProductName
             // 
+            this.textBoxProductName.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductName.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductName.Location = new System.Drawing.Point(433, 68);
             this.textBoxProductName.Name = "textBoxProductName";
             this.textBoxProductName.Size = new System.Drawing.Size(185, 20);
@@ -64,6 +68,8 @@
             // 
             // textBoxProductPrice
             // 
+            this.textBoxProductPrice.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductPrice.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductPrice.Location = new System.Drawing.Point(433, 124);
             this.textBoxProductPrice.Name = "textBoxProductPrice";
             this.textBoxProductPrice.Size = new System.Drawing.Size(185, 20);
@@ -71,6 +77,8 @@
             // 
             // textBoxProductReference
             // 
+            this.textBoxProductReference.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductReference.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductReference.Location = new System.Drawing.Point(433, 94);
             this.textBoxProductReference.Name = "textBoxProductReference";
             this.textBoxProductReference.Size = new System.Drawing.Size(185, 20);
@@ -78,15 +86,18 @@
             // 
             // textBoxProductDescription
             // 
+            this.textBoxProductDescription.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductDescription.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductDescription.Location = new System.Drawing.Point(433, 158);
             this.textBoxProductDescription.Multiline = true;
             this.textBoxProductDescription.Name = "textBoxProductDescription";
             this.textBoxProductDescription.Size = new System.Drawing.Size(185, 58);
             this.textBoxProductDescription.TabIndex = 4;
-            this.textBoxProductDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EnterXEnter);
             // 
             // textBoxProductStockedQuantity
             // 
+            this.textBoxProductStockedQuantity.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductStockedQuantity.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductStockedQuantity.Location = new System.Drawing.Point(433, 284);
             this.textBoxProductStockedQuantity.Name = "textBoxProductStockedQuantity";
             this.textBoxProductStockedQuantity.ReadOnly = true;
@@ -156,26 +167,30 @@
             // 
             // buttonUpdateProduct
             // 
+            this.buttonUpdateProduct.BackColor = System.Drawing.Color.DarkGray;
             this.buttonUpdateProduct.Location = new System.Drawing.Point(283, 365);
             this.buttonUpdateProduct.Name = "buttonUpdateProduct";
             this.buttonUpdateProduct.Size = new System.Drawing.Size(149, 31);
             this.buttonUpdateProduct.TabIndex = 12;
             this.buttonUpdateProduct.Text = "Ajouter / Mise à jour";
-            this.buttonUpdateProduct.UseVisualStyleBackColor = true;
+            this.buttonUpdateProduct.UseVisualStyleBackColor = false;
             this.buttonUpdateProduct.Click += new System.EventHandler(this.buttonUpdateProduct_Click);
             // 
             // buttonDeleteProduct
             // 
+            this.buttonDeleteProduct.BackColor = System.Drawing.Color.DarkGray;
             this.buttonDeleteProduct.Location = new System.Drawing.Point(467, 365);
             this.buttonDeleteProduct.Name = "buttonDeleteProduct";
             this.buttonDeleteProduct.Size = new System.Drawing.Size(108, 31);
             this.buttonDeleteProduct.TabIndex = 13;
             this.buttonDeleteProduct.Text = "Supprimer";
-            this.buttonDeleteProduct.UseVisualStyleBackColor = true;
+            this.buttonDeleteProduct.UseVisualStyleBackColor = false;
             this.buttonDeleteProduct.Click += new System.EventHandler(this.buttonDeleteProduct_Click);
             // 
             // comboBoxCategory
             // 
+            this.comboBoxCategory.BackColor = System.Drawing.Color.Azure;
+            this.comboBoxCategory.ForeColor = System.Drawing.Color.SeaGreen;
             this.comboBoxCategory.FormattingEnabled = true;
             this.comboBoxCategory.Location = new System.Drawing.Point(451, 236);
             this.comboBoxCategory.Name = "comboBoxCategory";
@@ -196,6 +211,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSlateGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.labelCategoryName);
             this.Controls.Add(this.comboBoxCategory);
@@ -213,6 +229,7 @@
             this.Controls.Add(this.textBoxProductPrice);
             this.Controls.Add(this.textBoxProductName);
             this.Controls.Add(this.listBoxProductName);
+            this.ForeColor = System.Drawing.Color.Blue;
             this.Name = "FormManageProduct";
             this.Text = "FormManageProduct";
             this.ResumeLayout(false);

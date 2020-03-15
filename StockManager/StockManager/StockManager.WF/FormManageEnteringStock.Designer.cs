@@ -43,6 +43,8 @@
             // 
             // listBoxEnteringStock
             // 
+            this.listBoxEnteringStock.BackColor = System.Drawing.Color.Azure;
+            this.listBoxEnteringStock.ForeColor = System.Drawing.Color.SeaGreen;
             this.listBoxEnteringStock.FormattingEnabled = true;
             this.listBoxEnteringStock.Location = new System.Drawing.Point(26, 28);
             this.listBoxEnteringStock.Name = "listBoxEnteringStock";
@@ -63,6 +65,8 @@
             // 
             // textBoxProductName
             // 
+            this.textBoxProductName.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductName.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductName.Location = new System.Drawing.Point(398, 121);
             this.textBoxProductName.Name = "textBoxProductName";
             this.textBoxProductName.ReadOnly = true;
@@ -71,14 +75,17 @@
             // 
             // textBoxQuantityEnteringStock
             // 
+            this.textBoxQuantityEnteringStock.BackColor = System.Drawing.Color.Azure;
+            this.textBoxQuantityEnteringStock.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxQuantityEnteringStock.Location = new System.Drawing.Point(398, 225);
             this.textBoxQuantityEnteringStock.Name = "textBoxQuantityEnteringStock";
             this.textBoxQuantityEnteringStock.Size = new System.Drawing.Size(100, 20);
             this.textBoxQuantityEnteringStock.TabIndex = 14;
-
             // 
             // textBoxProductStockedQuantity
             // 
+            this.textBoxProductStockedQuantity.BackColor = System.Drawing.Color.Azure;
+            this.textBoxProductStockedQuantity.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxProductStockedQuantity.Location = new System.Drawing.Point(398, 184);
             this.textBoxProductStockedQuantity.Name = "textBoxProductStockedQuantity";
             this.textBoxProductStockedQuantity.Size = new System.Drawing.Size(100, 20);
@@ -116,12 +123,13 @@
             // 
             // buttonUpdateStock
             // 
+            this.buttonUpdateStock.BackColor = System.Drawing.Color.DarkGray;
             this.buttonUpdateStock.Location = new System.Drawing.Point(606, 287);
             this.buttonUpdateStock.Name = "buttonUpdateStock";
             this.buttonUpdateStock.Size = new System.Drawing.Size(123, 47);
             this.buttonUpdateStock.TabIndex = 19;
             this.buttonUpdateStock.Text = "Mettre à jour";
-            this.buttonUpdateStock.UseVisualStyleBackColor = true;
+            this.buttonUpdateStock.UseVisualStyleBackColor = false;
             this.buttonUpdateStock.Click += new System.EventHandler(this.buttonUpdateStock_Click);
             // 
             // labelEmployeeCode
@@ -136,6 +144,8 @@
             // 
             // textBoxEmployeeCode
             // 
+            this.textBoxEmployeeCode.BackColor = System.Drawing.Color.Azure;
+            this.textBoxEmployeeCode.ForeColor = System.Drawing.Color.SeaGreen;
             this.textBoxEmployeeCode.Location = new System.Drawing.Point(398, 150);
             this.textBoxEmployeeCode.Name = "textBoxEmployeeCode";
             this.textBoxEmployeeCode.Size = new System.Drawing.Size(100, 20);
@@ -145,6 +155,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.textBoxEmployeeCode);
             this.Controls.Add(this.labelEmployeeCode);
@@ -157,6 +168,7 @@
             this.Controls.Add(this.textBoxProductName);
             this.Controls.Add(this.labelManageEnteringStock);
             this.Controls.Add(this.listBoxEnteringStock);
+            this.ForeColor = System.Drawing.Color.Blue;
             this.Name = "FormManageEnteringStock";
             this.Text = "FormManageEnteringStock";
             this.ResumeLayout(false);

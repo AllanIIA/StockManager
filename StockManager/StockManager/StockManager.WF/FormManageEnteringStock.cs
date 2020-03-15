@@ -22,10 +22,19 @@ namespace StockManager.WF
         /// </summary>
         private int _StoredQuantity;
 
+        /// <summary>
+        /// Liste des Produits de l'application
+        /// </summary>
         private List<Product> _Products;
 
+        /// <summary>
+        /// Verifie si le produit est une entrée ou une sortie
+        /// </summary>
         private bool _IsEntry;
 
+        /// <summary>
+        /// Permet la connexion à la Base de données
+        /// </summary>
         private string _ConnetionString;
 
 
@@ -35,6 +44,9 @@ namespace StockManager.WF
 
 
         #region  Methods
+         /// <summary>
+        /// Obtient ou défini la quantité stockée de l'application
+        /// </summary>
         public int StoredQuantity
         {
             get { return _StoredQuantity; }
@@ -42,18 +54,27 @@ namespace StockManager.WF
         }
 
 
+        /// <summary>
+        /// Obtient ou défini la liste des Produits de l'application
+        /// </summary>
         public List<Product> Products
         {
             get { return _Products; }
             set { _Products = value; }
         }
 
+        /// <summary>
+        /// Verifie si le produit est une entrée ou une sortie
+        /// </summary>
         public bool IsEntry
         {
             get { return _IsEntry; }
             set { _IsEntry = value; }
         }
 
+        /// <summary>
+        /// Permet la connexion à la Base de données
+        /// </summary>
         public string ConnectionString
         {
             get { return _ConnetionString; }
@@ -61,6 +82,13 @@ namespace StockManager.WF
         }
         #endregion
 
+        #region Constructor
+        /// <summary>
+        /// Constructeur principale
+        /// </summary>
+        /// <param name="products"></param>
+        /// <param name="isEntry"></param>
+        /// <param name="connectionString"></param>
         public FormManageEnteringStock(List<Product> products, bool isEntry, string connectionString)
         {
             _IsEntry = isEntry;
@@ -71,7 +99,13 @@ namespace StockManager.WF
             listBoxEnteringStock.DisplayMember = "Name";
             listBoxEnteringStock.DisplayMember = nameof(Product.Nom);
         }
+        #endregion
 
+        /// <summary>
+        /// Affiche la liste des produits
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxEnteringStock_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBoxEnteringStock.SelectedItem is Product)
@@ -96,6 +130,11 @@ namespace StockManager.WF
 
         }
 
+        /// <summary>
+        /// Permat d'ajouter ou de mettre à jour la quantité de produit stockée (entrée)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonUpdateStock_Click(object sender, EventArgs e)
         {
             StockMovementProduct stockMovementProduct = new StockMovementProduct();
@@ -126,8 +165,7 @@ namespace StockManager.WF
                     command.Parameters.AddWithValue("EmployeeCode", textBoxEmployeeCode.Text);
                     command.Parameters.AddWithValue("IsStockEntry", _IsEntry);
 
-                    // On récupère l'identifiant du stockMovement nouvellement ajouté,
-                    // puisqu'il est nécessaire dans l'insertion d'un nouveau stockMovementProduct.
+                    // On récupère l'identifiant du stockMovement
                     stockMovementProduct.IdentifierStockmovement = (int)command.ExecuteScalar();
 
                     command.CommandText = $"INSERT INTO StockMovementProduct([IdentifierProduct]," +
@@ -154,7 +192,7 @@ namespace StockManager.WF
 
         #region Sql
         // <summary>
-        /// met à jour la liste des produits.
+        /// Met à jour la liste des produits.
         /// </summary>
         public void ForceRefreshList(SqlConnection sqlConnection)
         {
@@ -168,7 +206,7 @@ namespace StockManager.WF
 
         }
 
-
+        //Connexion à la base de données
         private static List<Product> GetProduct(SqlConnection sqlConnection)
         {
             List<Product> products = new List<Product>();

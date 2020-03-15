@@ -22,9 +22,20 @@ namespace StockManager.WF
         /// </summary>
         private List<Product> _Products;
 
+
+        /// <summary>
+        /// Liste des catégories de l'applications
+        /// </summary>
         private List<ProductCategory> _Category;
+
+        /// <summary>
+        /// Permet la connexion à la base de données
+        /// </summary>
         private string _ConnetionString;
 
+        /// <summary>
+        /// Permet la connexion à la Base de données
+        /// </summary>
         public string ConnectionString
         {
             get { return _ConnetionString; }
@@ -105,45 +116,12 @@ namespace StockManager.WF
             }
         }
 
-
-
-
-        private void updateProduct()
-        {
-            if (listBoxProductName.SelectedItem is Product)
-            {
-                ((Product)listBoxProductName.SelectedItem).Nom = textBoxProductName.Text;
-                ((Product)listBoxProductName.SelectedItem).Reference = textBoxProductReference.Text;
-                ((Product)listBoxProductName.SelectedItem).Description = textBoxProductDescription.Text;
-                Decimal Prix = ((Product)listBoxProductName.SelectedItem).Price;
-                string PrixUnitaire = Prix.ToString();
-                textBoxProductPrice.Text = PrixUnitaire;
-                int Quantity = ((Product)listBoxProductName.SelectedItem).StoredQuantity;
-                string QuantityTotal = Quantity.ToString();
-                textBoxProductStockedQuantity.Text = QuantityTotal;
-
-                Product product = new Product();
-                product.Nom = "New Product";
-                Products.Add(product);
-                //ForceRefreshList();
-            }
-
-
-            /// <summary>
-            /// Permet d'ajouter et ou de mettre à jour des produits
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e"></param>
-
-
-            /// <summary>
-            /// Permet de supprimer des produits
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e"></param>
-
-        }
-
+        
+        /// <summary>
+        /// Ajout ou mise à jour d'un produit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonUpdateProduct_Click(object sender, EventArgs e)
         {
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
@@ -187,10 +165,13 @@ namespace StockManager.WF
 
                 sqlConnection.Close();
             }
-            //updateProduct();
-
         }
 
+        /// <summary>
+        /// Suppression d'un produit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDeleteProduct_Click(object sender, EventArgs e)
         {
 
@@ -199,7 +180,8 @@ namespace StockManager.WF
                 Product productToDelete = _Products.First(selectedProduct =>
                 selectedProduct.Nom == ((Product)listBoxProductName.SelectedItem).Nom);
 
-                sqlConnection.Open(); //On ouvre la connexion.
+                //On ouvre la connexion.
+                sqlConnection.Open(); 
 
                 using (SqlCommand command = sqlConnection.CreateCommand())
                 {
@@ -212,7 +194,8 @@ namespace StockManager.WF
                 // Actualise l'affichage de la listbox.
                 ForceRefreshList(sqlConnection);
 
-                sqlConnection.Close();// On ferme la connection.
+                // On ferme la connection.
+                sqlConnection.Close();
             }
 
         }
@@ -235,6 +218,11 @@ namespace StockManager.WF
         }
 
 
+        /// <summary>
+        /// Connexion à la base de données
+        /// </summary>
+        /// <param name="sqlConnection"></param>
+        /// <returns></returns>
         private static List<Product> GetProduct(SqlConnection sqlConnection)
         {
             List<Product> products = new List<Product>();
@@ -289,23 +277,12 @@ namespace StockManager.WF
         }
         #endregion
 
-
-        private void EnterXEnter(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-            {
-                updateProduct();
-            }
-        }
-
-
-
         private void AddNewProduct()
         {
             // Vérifie si un nouveau produit est déja présent.
-            if (!Products.Any(newProduct => newProduct.Nom == "Nouveau produit"))
+            if (!Products.Any(newProduct => newProduct.Nom == "New Product"))
             {
-                // Sinon l'ajoute.
+                // Sinon on l'ajoute.
                 Product product = new Product();
                 product.Nom = "New Product";
                 ProductCategory productCategory = new ProductCategory();
